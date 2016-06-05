@@ -2,7 +2,7 @@ import java.util.Collections;
 import java.util.Arrays;
 import java.util.List;
 
-//O(N!) solution
+//O(N * LOG(N)) solution
 
 class MinionInfo implements Comparable<MinionInfo> {
     int position;
