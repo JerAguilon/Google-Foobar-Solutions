@@ -13,7 +13,7 @@ The run time for each pass through would be O(c+w), c = chunk length, w = word l
 ______________________________________________________________________________________
 
 Upon testing the above approach, I found that it would fail the last of the five test cases. I've isolated that
-to not handling "branch" cases:
+to not handling "branch" cases (I couldn't find a clean way to implement step 2):
       chunk = "testababab", word = "aba"
 This is due to the overlap between the patterns causing branches in the solution. This creates a tree structure below:
 
