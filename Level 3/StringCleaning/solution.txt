@@ -1,0 +1,12 @@
+Algorithm choice: Judging from the examples, I suspect that KMP would be a good choice. I'm willing to bet that 
+the alphabet will be small for the test cases. I've coded Rabin-Karp, KMP, and Boyer-Moore before, and KMP runs
+fastest on smaller alphabets.
+
+Approach:
+1) Return all incidences of the pattern match
+2) Find a way to check for collisions between substrings (e.x. matching "ABA" to "ABABA" 
+   results in a collision of [ABA]ba and ab[ABA]). This could be built into the KMP alg.
+3) Remove all substrings.
+4) Return to 1 until no incidences are found. 
+
+The run time for each pass through would be O(n+k). 
