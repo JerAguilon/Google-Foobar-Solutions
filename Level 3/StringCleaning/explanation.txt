@@ -21,7 +21,7 @@ This is due to the overlap between the patterns causing branches in the solution
                   /        \
                testbab    testabb 
 
-To hit every possible case of removal, preorder traversal can be done recursively, where the base case is
+To hit every possible case of removal, a DFS/preorder traversal can be done recursively, where the base case is
 when the KMP algorithm fails to find children to recurse on:
 
 Approach #2:
