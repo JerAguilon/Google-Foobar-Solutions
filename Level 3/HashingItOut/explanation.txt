@@ -1,0 +1,16 @@
+No JUnit tests for this one! this one just required a mathematical proof.
+
+Consider where i is the corresponding term in the series:
+
+
+1) Premise:        `d_i = ((129 * m_i) XOR M_(i-1) MOD 256,    0 <= d_i, m_i <= 255`
+2) Assignment: Using the constraints of m_i, we can find a maximum and minimum value of c
+                        `c = ((129 * m_i) XOR M_(i-1),          0 <= c <= 129 * 255`
+3) Observation: For every d_i, adding some multiple of 256 will produce c, where c is within the bounds
+                identified above:
+                           `c = 256n + d_i`
+4) Observation: For any given c, we can produce a possible value for m_i by solving for m_i:
+                            `c = 129 * m_i XOR m_(i-1)`
+                            m_i = (C XOR m_(i-1)) / 129
+
+    Since it was given that m_i is unique, we just need to find an integer m_i within the bounds.
