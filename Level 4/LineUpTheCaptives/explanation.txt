@@ -1,0 +1,18 @@
+Another problem with a simple solution that times out upon verification. Here is my initial approach,
+which ran too slowly but could be used to create tests:
+
+  INPUT: (int leftCount, int rightCount, int rabbits)
+  1) Allow the rabbits to be labeled 0,1,2,...rabits - 1. Add rabbits - 1 (the tallest rabbit to a list).
+        *adding a rabbit to the beginning of the list increases leftCount by one, and adding a rabbit
+         too the end of the list increases rightCount by one. If there are multiple items, adding a rabit
+         has no effect on the view
+  2) Slot in currentRabbit - 1 to every position in the array. We can then recursively call this 
+     function, incrementing leftCount and rightCount as needed until we've added rabbit #0. 
+     
+  BASE CASES: if current rabbit is 0 and leftCount and rightCount satisfy the conditions, we have
+              found a valid permutation.
+              Otherwise, if current rabbit is 0 and this is not the case, we can just stop recursing.
+     
+This algorithm ran in factorial time, so I needed to find a better solution. Using some combinatorics, 
+I arrived at the following solution:
+
