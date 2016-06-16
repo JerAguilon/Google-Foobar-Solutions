@@ -1,5 +1,7 @@
 out/
 .idea/
+bin/
 *~
 *.swp
 *.swo
+
