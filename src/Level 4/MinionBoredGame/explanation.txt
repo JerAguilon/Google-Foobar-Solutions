@@ -12,3 +12,7 @@ broke it down like so:
 If a base case is reached with 0 moves remaining, then we have found a unique
 solution. While this passed all my test cases, it would still time out.
 Therefore, I needed to formulate a more intelligent way to recurse.
+
+The idea of this new approach still relies on recursion, but I'd be using it to
+build a dictionary instead to track previously solved states. This breaks the problem
+down to a quicker runtime.
