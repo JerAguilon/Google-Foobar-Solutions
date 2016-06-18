@@ -14,5 +14,13 @@ which ran too slowly but could be used to create tests:
               Otherwise, if current rabbit is 0 and this is not the case, we can just stop recursing.
      
 This algorithm ran in factorial time, so I needed to find a better solution. Using some combinatorics, 
-I arrived at the following solution:
 
+We can split the problem immediately into two subsets. The rabbits to the left
+of the largest rabbit and the rabbits to the right. Using combinatorics, I
+found that the number of solutions would be:
+
+      validLeftSolutions * validRightSolutions * waysToChooseRabbitsOnOneSide
+
+I also decided to recurse from a higher number of rabbits downwards, allowing
+me to more easily cache previous solutions. Ultimately, the caching technique
+improved the runtime enough to pass the tests.
