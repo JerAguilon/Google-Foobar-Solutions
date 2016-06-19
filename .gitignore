@@ -4,4 +4,4 @@ bin/
 *~
 *.swp
 *.swo
-
+*.class

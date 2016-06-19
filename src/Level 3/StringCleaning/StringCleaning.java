@@ -1,67 +1,46 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-class StringHolder implements Comparable<String> {
-    static String string;
-
-    public int length() {
-        return string.length();
-    }
-
-    public int compareTo(String other) {
-        return string.compareTo(other);
-    }
-
-    public String toString() {
-        return string;
-    }
-}
 
 public class StringCleaning {
-    public static String answer(String chunk, String word) {
-        StringHolder best = new StringHolder();
-        best.string = chunk;
-        Set<String> visited = new HashSet<String>();
-        transform(chunk, word, best, visited);
-        return best.toString();
-    }
-
-    private static void transform(String chunk, String word, StringHolder best,
-                                  Set<String> visited) {
-        if (chunk.length() < best.length()) {
-            best.string = chunk;
-        } else if (chunk.length() == best.length()
-                && best.compareTo(chunk) > 0) {
-            best.string = chunk;
+    public static String answer(String chunk, String word) { 
+        StringBuilder sbChunk = new StringBuilder(chunk);
+        String current = chunk;
+        while (!current.equals(transform(sbChunk, word))) {
+            current = sbChunk.toString();
         }
-
-        List<Integer> kmpResults = kmp(chunk, word);
-
-        //base case 1: Stop recursing if you can't remove anymore
-        if (kmpResults.size() == 0) return;
-
-        for (int i : kmpResults) {
-            String removedWord = chunk.substring(0, i) + chunk.substring(i
-                    + word.length(), chunk.length());
-            //base case 1: Stop recursing if you've processed that case already
-            if (!visited.contains(removedWord)) {
-                visited.add(removedWord);
-                transform(removedWord, word, best, visited);
-
+        
+        return sbChunk.toString();
+    } 
+    
+    private static String transform(StringBuilder sbChunk, String word) {
+        String chunk = sbChunk.toString();
+        
+        List<Integer> kmpResult = kmp(chunk, word);
+        
+        int previous = chunk.length() + 1;
+        for (int i = kmpResult.size() - 1; i >= 0; i--) {
+            int index = kmpResult.get(i);
+            
+            if (index + word.length() >  previous) {
+                continue;
             }
+            
+            previous = index;
+            sbChunk.delete(index, index + word.length());
         }
+        
+        return sbChunk.toString();
+        
     }
-
+    
     //Failure table for KMP. Copied over from CS1332 homework
     private static int[] buildFailureTable(String word) {
         int[] table = new int[word.length()];
         table[0] = 0;
-
+        
         int i = 1;
         int j =0;
-
+        
         while (i < word.length()) {
             if (word.charAt(i) == word.charAt(j)) {
                 table[i] = j + 1;
@@ -73,27 +52,27 @@ public class StringCleaning {
                 i++;
             }
         }
-
+        
         return table;
     }
-
-    //kmp algorithm. I chose this because I'm betting that the
+    
+    //kmp algorithm. I chose this because I'm betting that the 
     //test cases utilize small alphabets, which means that kmp
     //would perform better than Boyer-Moore or Rabin-Karp
     private static List<Integer> kmp(String chunk, String word) {
         int n = chunk.length();
         int m = word.length();
-
+        
         if (m > n) {
             return new ArrayList<>();
         }
-
+        
         int[] table = buildFailureTable(word);
         int i = 0;
         int j = 0;
-
+        
         ArrayList<Integer> result = new ArrayList<>();
-
+        
         //while chars left in pattern is less than chars in text
         while (m - j <= n - i) {
             if (chunk.charAt(i) == word.charAt(j)) {
@@ -111,7 +90,7 @@ public class StringCleaning {
                 i++;
             }
         }
-
+        
         return result;
     }
 }

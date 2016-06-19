@@ -1,9 +1,12 @@
-import java.util.*;
-import java.math.*;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class LineUpTheCaptives {  
+public class LineUpTheCaptives {
 	private static Map<Integer, BigInteger> factorials;
-    private static Map<List<Integer>, BigInteger> solutionCache = new HashMap<>();
+	private static Map<List<Integer>, BigInteger> solutionCache = new HashMap<>();
      
     public static String answer (int leftCount, int rightCount, int rabbits) {
         factorials = generateFactorials();
