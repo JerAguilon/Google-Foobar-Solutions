@@ -1,0 +1,29 @@
+This proof of this solution makes use of recusion and the "stars and bars"
+combinatorics formula to derive the number of valid permutations. Consider a
+tree with only one node. Clearly, this can only be represented by one array.
+We'll use the case of one node as our base case.
+
+Next, let's add a node:
+
+                        0
+                         \
+                          1
+
+Still, there is only one permutation to represent this tree. In fact, as
+long as we keep adding right children, there will only be one representation.
+Let's build up to create a fork:
+
+                        0
+                       / \
+                     -1   1
+
+Isolating the right side, we know the 1 must come after the 0. Therefore,
+the -1 can come in any of the underscored slots [0, _, 1, _]. Thus, there are
+C(2, 1)=2 solutions to this array. We can also express this as
+C(1 + numberNodesOnRight + numberNodesOnLeft - 1, numberNodesOnLeft). In other
+words, this is actually a derivative of the "stars and bars" combinatorics
+problem.
+
+Scaling up from this point is as simple as recursing. If any children nodes
+are the root nodes of more branches, we simply need to multiply the combination
+by the number of permutations in that branch.
