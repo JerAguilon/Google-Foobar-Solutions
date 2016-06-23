@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/LineUpTheCaptives" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MinionBoredGame" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BinaryBunnies" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BreedingLikeRabbits" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
