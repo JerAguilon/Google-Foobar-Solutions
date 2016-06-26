@@ -10,17 +10,20 @@ public class BreedingLikeRabbits {
 
     private static Map<BigInteger, BigInteger> map = new HashMap<>();
 
-    public static void main(String[] args) {
-        System.out.println(answer("100"));
-    }
 
     public static String answer(String strS) {
         map.put(BigInteger.ZERO, ONE);
-        map.put(BigInteger.ONE, ONE);
-        map.put(new BigInteger("2"), TWO);
-        BigInteger result = binarySearch(BigInteger.ZERO, MAX_VALUE, new BigInteger(strS));
-        if (result != null) return result.toString();
-        else return "None";
+        map.put(ONE, ONE);
+        map.put(TWO, TWO);
+        BigInteger evenResult = binarySearch(BigInteger.ZERO, MAX_VALUE, new BigInteger(strS), true);
+        BigInteger oddResult = binarySearch(ONE, MAX_VALUE, new BigInteger(strS), false);
+
+        if (evenResult == null && oddResult == null) return "None";
+        if (evenResult != null && oddResult == null) return evenResult.toString();
+        if (evenResult == null && oddResult != null) return oddResult.toString();
+
+        if (oddResult.compareTo(evenResult) > 0) return oddResult.toString();
+        else return evenResult.toString();
     }
 
     public static BigInteger R(BigInteger key) {
@@ -31,7 +34,7 @@ public class BreedingLikeRabbits {
         if (key.mod(TWO).equals(BigInteger.ZERO)) {
             newValue = R(key.divide(TWO))
                     .add(R(key.divide(TWO).add(ONE)))
-                    .add(key);
+                    .add(key.divide(TWO));
         } else {
             newValue = R((key.subtract(ONE)).divide(TWO).subtract(ONE))
                     .add(R((key.subtract(ONE)).divide(TWO)))
@@ -42,18 +45,24 @@ public class BreedingLikeRabbits {
         return newValue;
     }
 
-    public static BigInteger binarySearch(BigInteger low, BigInteger high, BigInteger target) {
+    public static BigInteger binarySearch(BigInteger low, BigInteger high, BigInteger target, boolean isEven) {
         if (high.compareTo(low) < 0) return null;
 
         BigInteger currentVal = low.add(high).divide(TWO);
+
+        if (isEven) {
+            if (currentVal.mod(TWO).equals(ONE)) currentVal.add(ONE);
+        } else {
+            if (currentVal.mod(TWO).equals(BigInteger.ZERO)) currentVal.add(ONE);
+        }
 
         BigInteger output = R(currentVal);
         if (target.equals(output)) return currentVal;
         else {
             if (target.compareTo(output) < 0) {
-                return binarySearch(low, currentVal.subtract(ONE), target);
+                return binarySearch(low, currentVal.subtract(TWO), target, isEven);
             } else {
-                return binarySearch(currentVal.add(ONE), high, target);
+                return binarySearch(currentVal.add(TWO), high, target, isEven);
             }
         }
     }
