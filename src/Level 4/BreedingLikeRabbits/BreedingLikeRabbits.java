@@ -1,8 +1,10 @@
 /**
  * Created by jeremy on 6/23/16.
  */
-import java.util.*;
+
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 public class BreedingLikeRabbits {
     private static final BigInteger MAX_VALUE = (new BigInteger("10")).pow(25);
     private static final BigInteger ONE = BigInteger.ONE;
@@ -16,7 +18,7 @@ public class BreedingLikeRabbits {
         map.put(ONE, ONE);
         map.put(TWO, TWO);
         BigInteger evenResult = binarySearch(BigInteger.ZERO, MAX_VALUE, new BigInteger(strS), true);
-        BigInteger oddResult = binarySearch(ONE, MAX_VALUE, new BigInteger(strS), false);
+        BigInteger oddResult = binarySearch(ONE, MAX_VALUE.subtract(ONE), new BigInteger(strS), false);
 
         if (evenResult == null && oddResult == null) return "None";
         if (evenResult != null && oddResult == null) return evenResult.toString();
@@ -47,13 +49,12 @@ public class BreedingLikeRabbits {
 
     public static BigInteger binarySearch(BigInteger low, BigInteger high, BigInteger target, boolean isEven) {
         if (high.compareTo(low) < 0) return null;
-
         BigInteger currentVal = low.add(high).divide(TWO);
 
         if (isEven) {
-            if (currentVal.mod(TWO).equals(ONE)) currentVal.add(ONE);
+            if ((currentVal.mod(TWO)).equals(ONE)) currentVal = currentVal.add(ONE);
         } else {
-            if (currentVal.mod(TWO).equals(BigInteger.ZERO)) currentVal.add(ONE);
+            if ((currentVal.mod(TWO)).equals(BigInteger.ZERO)) currentVal = currentVal.add(ONE);
         }
 
         BigInteger output = R(currentVal);

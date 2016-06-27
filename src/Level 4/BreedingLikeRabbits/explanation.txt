@@ -1,0 +1,11 @@
+While finding a solution to the functions is rather simple, there are two factors that complicate matters:
+        1) The input is LARGE. 10^25 mandates that we can't use simple ints
+        2) Even and odd inputs lead to independent solutions that don't have much
+           to do with each other.
+
+The solution to the first issue can be eased with the BigInteger class, similar to the BinaryBunnies challenge. A
+helpful heuristic is that n in R(n) will never be larger than the input. The largest input possible is 10^25, so we can
+always use that as our upper bound. For efficiency, it would be costly to solve for R(n) from 1 to the input, so instead
+we will conduct a binary search. Taking into account the second part, we simply need to conduct a binary search
+through the even values and the odd values. If solutions exist in both even and odd spaces, we just return the larger
+value.
