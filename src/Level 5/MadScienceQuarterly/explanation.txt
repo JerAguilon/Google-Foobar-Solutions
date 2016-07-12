@@ -1,0 +1,8 @@
+Finally a problem where the simplest solution had a good enough runtime to pass! To solve this, simply select
+elements from index 0 to k  in the list. Add these up, and then shift the window from left to right like so:
+
+ L = {0,1,2,3}, k = 3
+ {[0, 1, 2],3} --> {0,[1,2,3]}
+
+ From there, all you need to do is shorten the selected elements to the first k - 1, and do the same process until
+ k = 0.
