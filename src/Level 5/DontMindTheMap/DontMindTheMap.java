@@ -4,7 +4,7 @@ public class DontMindTheMap {
 	static Map<SubwayState, Boolean> memoizedSolutions = new HashMap<>();
 	static List<Rabbit> rabbits;
 	static int[][] originalStation;
-    static int callCount = 0;
+    	static int callCount = 0;
 
 	public static void main(String[] args) {
 		int[][] map = new int[][] {{0},{1},{2}};
