@@ -7,15 +7,14 @@ public class DontMindTheMap {
     static int callCount = 0;
 
 	public static void main(String[] args) {
-		int[][] map = new int[][] {{1, 2}, {1, 1}, {2, 2}};
-
+		int[][] map = new int[][] {{0},{1},{2}};
 		System.out.println(answer(map));
 	}    
     
 	public static int answer(int[][] L) {
 	    callCount++;
 
-	    if (callCount == 4) {//L.length == 26) {
+	    if (callCount == 4) {
 	        return -1;
 	    }
 	    
@@ -42,7 +41,7 @@ public class DontMindTheMap {
 			int[][] newMap = removeStation(L, i);
 
 			if (recursiveSolution(newMap, 
-					rabbits, new SubwayState(L.length), 
+					rabbits, new SubwayState(L.length - 1), 
 					true, 
 					new ArrayList<Integer>())) {
 
@@ -57,11 +56,11 @@ public class DontMindTheMap {
 	}
 
 	public static int[][] removeStation(int[][] map, int stationLocation) {
-
 		int[][] output = new int[map.length - 1][map[0].length];
 
 		int tracker = 0;
 		for (int i = 0; i < stationLocation; i++) {
+			System.out.println(i);
 			output[i] = Arrays.copyOf(map[i], map[i].length);
 			tracker = i + 1;
 		}
@@ -75,28 +74,18 @@ public class DontMindTheMap {
 
 		for (int i = 0; i < output.length; i++) {
 			int[] station = output[i];
-			if (station[0] == stationLocation) {
-				if (removedStation[0] == stationLocation) {
-					station[0] = i;
-				} else {
-					station[0] = removedStation[0];
+			for (int j = 0; j < station.length; j++) {
+				if (station[j] == stationLocation) {
+					if (removedStation[j] == stationLocation) {
+						station[j] = i;
+					} else {
+						station[j] = removedStation[j];
+					}
 				}
-			}
 
-			if (station[1] == stationLocation) {
-				if (removedStation[1] == stationLocation) {
-					station[1] = i;
-				} else {
-					station[1] = removedStation[1];
-				}			
-			}
-
-			if (station[0] > stationLocation) {
-				station[0] = station[0] - 1;
-			}
-
-			if (station[1] > stationLocation) {
-				station[1] = station[1] - 1;
+				if (station[j] > stationLocation) {
+					station[j] = station[j] - 1;
+				}
 			}
 		}
 
