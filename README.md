@@ -5,4 +5,4 @@ a hidden challenge I ran into while querying programming terms on the search eng
 5 levels in total. Each level has the same number of problems (1 problem for level 1, 2 for level 2, ...). 
 I have saved my solutions, thought processes, and test code for level 3 and onwards.
 
-![alt tag](https://github.com/JerAguilon/GoogleFoobarSolutions/blob/master/FoobarImage.png)
+![alt tag](https://github.com/JerAguilon/GoogleFoobarSolutions/blob/master/FoobarImage2.png)
