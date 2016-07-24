@@ -7,7 +7,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class BinaryBunniesTest {
 
-
     @Test
     public void testGivenScenario1() {
         assertEquals("6", BinaryBunnies.answer(new int[] {5, 9, 8, 2, 1}));

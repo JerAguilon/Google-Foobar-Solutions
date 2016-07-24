@@ -17,5 +17,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="Level 4" />
+    <orderEntry type="module" module-name="Level 5" />
+    <orderEntry type="module" module-name="Level 3" />
   </component>
 </module>
