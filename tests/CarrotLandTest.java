@@ -21,4 +21,12 @@ public class CarrotLandTest {
         int result = CarrotLand.answer(input);
         assertEquals(1730960165, result);
     }
+
+    @Test
+    public void trivialTest() {
+        int[][] input = new int[][] {{-1,-1}, {1,0}, {0,1}};
+
+        int result = CarrotLand.answer(input);
+        assertEquals(1, result);
+    }
 }
